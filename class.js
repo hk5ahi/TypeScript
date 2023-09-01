@@ -1,10 +1,12 @@
 "use strict";
 class EmployeeInformation {
+    constructor(id, FirstName, LastName, age, salary) {
+        this.id = id;
+        this.FirstName = FirstName;
+        this.LastName = LastName;
+        this.age = age;
+        this.salary = salary;
+    }
 }
-let obj1 = new EmployeeInformation();
-obj1.id = 1;
-obj1.FirstName = "Muhammad";
-obj1.LastName = "Hanan";
-obj1.age = 25;
-obj1.salary = 50000;
+let obj1 = new EmployeeInformation(1, "Muhammad", "Hanan", 25, 50000);
 console.log(obj1);
