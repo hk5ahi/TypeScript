@@ -1,21 +1,69 @@
+import { fullName ,Login,User } from "./interface"; // import interface
 class EmployeeInformation
 {
-    id!: number;
-    FirstName!: string;
-    LastName!: string;
-    age!: number;
-    salary!: number;
-constructor(id:number,FirstName:string,LastName:string,age:number,salary:number) {
+    #id: number;
+    fullName: fullName;
+    age: number;
+    protected salary: number;
 
-    this.id=id;
-    this.FirstName=FirstName;
-    this.LastName=LastName;
-    this.age=age;
-    this.salary=salary;
+
+constructor() {
+
+    this.#id= 1;
+    this.fullName={firstName: "Muhammad", lastName: "Sahi",middleName:"Hanan"};
+    this.age= 23;
+    this.salary= 10000;
 }
 
+//static method
+   static getAge():number{
+
+    return 23;
+   }
+
+//getter and setter
+get Salary():number{
+
+    return this.salary;
 }
 
-let obj1:EmployeeInformation=new EmployeeInformation(1,"Muhammad","Hanan",25,50000);
+set Salary(value:number){
 
-console.log(obj1);
+    this.salary=value;
+}
+//string literal
+    getFullNameWithAge(): string {
+        if (this.fullName.middleName) {
+            return `${this.fullName.firstName} ${this.fullName.middleName} ${this.fullName.lastName} ${this.age}`;
+        } else {
+            return `${this.fullName.firstName} ${this.fullName.lastName} ${this.age}`;
+        }
+    }
+
+}
+
+let user: User = {
+id:1,fullName:{firstName:"Muhammad",lastName:"Hanan"},age:23,email:"mohammad@gmail.com",password:"123456"};
+let {fullName:{firstName:userName},password:userPassword}=user; // object destructuring
+//interface implementation
+class LoginClass implements Login
+{
+    getUserDetails(): User {
+        return user ;
+    }
+
+}
+
+let obj1:EmployeeInformation=new EmployeeInformation();
+let  fullNameWithAge=obj1.getFullNameWithAge();
+
+console.log(fullNameWithAge);
+console.log(EmployeeInformation.getAge());
+console.log(obj1.Salary);
+obj1.Salary=20000;
+console.log(obj1.Salary);
+let obj2:LoginClass =new LoginClass();
+console.log(obj2.getUserDetails());
+console.log(userName);
+console.log(userPassword);
+
